@@ -22,7 +22,6 @@ module.exports = (app) => {
 		fs.readdirSync(dir).forEach(file => {
 			const modelDir = path.join(dir, file);
 			const model = sequelize.import(modelDir);
-			console.log(model);
 			db.models[model.name] = model;
 		});
 		Object.keys(db.models).forEach(key => {
