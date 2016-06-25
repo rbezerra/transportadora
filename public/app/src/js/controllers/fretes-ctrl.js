@@ -60,7 +60,7 @@ function FretesCtrl(Fretes, Cidades, Clientes, SweetAlert){
 			Fretes.update(vm.freteFormulario, function(){
 				carregarFretes();
 				resetForm();
-				SweetAlert.success("Frete Atualizado");
+				SweetAlert.success("Frete  Atualizado");
 
 			}, function(error){
 				console.log(error);
