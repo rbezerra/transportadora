@@ -35,7 +35,10 @@ node_modules
 public/app/dist
 public/app/node_modules
 public/app/src/components
-!public/app/src
+!public/app/src/img
+!public/app/src/js
+!public/app/src/templates
+!public/app/src/index.html
 !public/app/bower.json
 !public/app/gulpfile.js
 !public/app/package.json
