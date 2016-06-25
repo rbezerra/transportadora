@@ -34,6 +34,7 @@ node_modules
 
 public/app/dist
 public/app/node_modules
+public/app/src/components
 !public/app/src
 !public/app/bower.json
 !public/app/gulpfile.js
