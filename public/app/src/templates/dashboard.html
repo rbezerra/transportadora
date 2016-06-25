@@ -1,0 +1,41 @@
+<div class="row">
+	<div class="col-lg-4 col-md-6 col-xs-12">
+		<a ui-sref="clientes">	
+			<rd-widget>
+				<rd-widget-body>
+					<div class="widget-icon blue pull-left">
+						<i class="fa fa-users"></i>
+					</div>
+					<div class="title">{{qtdClientes}}</div>
+					<div class="comment">Clientes</div>
+				</rd-widget-body>
+			</rd-widget>
+		</a>
+	</div>
+	<div class="col-lg-4 col-md-6 col-xs-12">
+		<a ui-sref="cidades">	
+			<rd-widget>
+				<rd-widget-body>
+					<div class="widget-icon red pull-left">
+						<i class="fa fa-map-marker"></i>
+					</div>
+					<div class="title">{{qtdCidades}}</div>
+					<div class="comment">Cidades</div>
+				</rd-widget-body>
+			</rd-widget>
+		</a>
+	</div>
+	<div class="col-lg-4 col-md-6 col-xs-12">
+		<a ui-sref="fretes">
+			<rd-widget>
+				<rd-widget-body>
+					<div class="widget-icon green pull-left">
+						<i class="fa fa-truck"></i>
+					</div>
+					<div class="title">{{qtdFretes}}</div>
+					<div class="comment">Fretes Realizados</div>
+				</rd-widget-body>
+			</rd-widget>
+		</a>
+	</div>
+</div>

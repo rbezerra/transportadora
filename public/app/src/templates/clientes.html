@@ -1,0 +1,88 @@
+<div class="row">
+	<div class="col-lg-12 col-md-6 col-xs-12">
+		<rd-widget>
+			<rd-widget-header icon="fa-users" title="{{clientes.op}} cliente">
+			</rd-widget-header>
+			<rd-widget-body>
+				<form name="clientes.formCliente" ng-submit="clientes.saveCliente()">
+					<div class="row">
+						<div class="form-group col-lg-2 col-md-12 col-xs-12">
+							<label for="codigo_cliente">Código do Cliente</label>
+							<input type="text" class="form-control" name="codigo_cliente" ng-model="clientes.clienteFormulario.codigo_cliente" disabled>
+						</div>
+						<div class="form-group col-lg-6 col-md-12 col-xs-12">
+							<label for="nome">Nome</label>
+							<input type="text" class="form-control" name="nome" ng-model="clientes.clienteFormulario.nome" required>
+						</div>
+					</div>
+					<div class="row">
+						<div class="form-group col-lg-4 col-md-12 col-xs-12">
+							<label for="endereco">Endereço</label>
+							<input type="text" class="form-control" name="endereco" ng-model="clientes.clienteFormulario.endereco" required>
+						</div>
+						<div class="form-group col-lg-4 col-md-12 col-xs-12">
+							<label for="telefone">Telefone</label>
+							<input type="text" class="form-control" name="telefone" ng-model="clientes.clienteFormulario.telefone" required>
+						</div>
+					</div>
+					<div class="row">
+						<div class="form-group col-lg-3 col-md-12 col-xs-12 pull-right">
+							<button class="btn btn-danger" title="Cancelar" ng-click="clientes.resetForm()">
+								Cancelar
+							</button>
+							<button class="btn btn-primary" title="Enviar" type="submit" ng-disabled="clientes.formCliente.$invalid">
+								Enviar
+							</button>
+						</div>
+					</div>
+				</form>
+			</rd-widget-body>
+		</rd-widget>
+	</div>
+</div>
+<div class="row">
+	<div class="col-lg-12 col-md-6 col-xs-12">
+		<rd-widget>
+			<rd-widget-header icon="fa-users" title="Clientes">
+		    </rd-widget-header>
+			<rd-widget-body>
+				<div class="table-responsive">
+					<table class="table">
+						<thead>
+							<th>#</th>
+							<th>Nome</th>
+							<th>Endereço</th>
+							<th>Telefone</th>
+							<th>Ações</th>
+						</thead>
+						<tbody>
+							<tr ng-repeat="cliente in clientes.lista |  startFrom:clientes.paginaAtual*clientes.tamanhoPagina | limitTo:clientes.tamanhoPagina">
+								<td>{{cliente.codigo_cliente}}</td>
+								<td>{{cliente.nome}}</td>
+								<td>{{cliente.endereco}}</td>
+								<td>{{cliente.telefone}}</td>
+								<td>
+									<button class="btn btn-danger" title="excluir" ng-click="clientes.removerCliente(cliente)">
+										<i class="fa fa-trash"></i>
+									</button>
+									<button class="btn btn-primary" title="editar" ng-click="clientes.carregarCliente(cliente)">
+										<i class="fa fa-edit"></i>
+									</button>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+				
+			</rd-widget-body>
+			<rd-widget-footer>
+		        <ul class="pagination pagination-sm pull-right">
+		          <li><button class="btn" ng-disabled="clientes.paginaAtual == 0" ng-click="clientes.paginaAtual=clientes.paginaAtual-1">&laquo;</button></li>
+		          <li class="btn">{{clientes.paginaAtual+1}} / {{clientes.qtdPaginas()}}</li>
+		          <li><button class="btn" ng-disabled="clientes.paginaAtual >= clientes.qtdPaginas()-1" ng-click="clientes.paginaAtual=clientes.paginaAtual+1">&raquo;</button></li>
+		        </ul>
+		        <div class="clearfix"></div>
+		     </rd-widget-footer>
+		</rd-widget>
+	</div>
+</div>

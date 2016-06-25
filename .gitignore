@@ -32,7 +32,8 @@ node_modules
 # Optional REPL history
 .npmode_repl_history
 
-public/app/
+public/app/dist
+public/app/node_modules
 !public/app/src
 !public/app/bower.json
 !public/app/gulpfile.js

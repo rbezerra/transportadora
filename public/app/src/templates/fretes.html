@@ -1,0 +1,125 @@
+<div class="row">
+	<div class="col-lg-12 col-md-6 col-xs-12">
+		<rd-widget>
+			<rd-widget-header icon="fa-truck" title="{{fretes.op}} frete">
+			</rd-widget-header>
+			<rd-widget-body>
+				<form name="fretes.formFrete" ng-submit="fretes.saveFrete()">
+					<div class="row">
+						<div class="form-group col-lg-2 col-md-12 col-xs-12">
+							<label for="codigo_frete">Código do Frete</label>
+							<input type="text" class="form-control" name="codigo_frete" ng-model="fretes.freteFormulario.codigo_frete" disabled>
+						</div>
+						<div class="form-group col-lg-6 col-md-12 col-xs-12">
+							<label for="descricao">Descrição</label>
+							<input type="text" class="form-control" name="descricao" ng-model="fretes.freteFormulario.descricao" required>
+						</div>
+					</div>
+					<div class="row">
+						<div class="form-group col-lg-3 col-md-12 col-xs-12">
+							<label for="peso">Peso</label>
+							<input type="text" class="form-control" name="peso" ng-model="fretes.freteFormulario.peso" required>
+						</div>
+						<div class="form-group col-lg-2 col-md-12 col-xs-12">
+							<label for="unidade">Unidade</label>
+							<select name="unidade" class="form-control" ng-model="fretes.freteFormulario.unidade">
+								<option value=""></option>
+								<option value="g">g</option>
+								<option value="kg">Kg</option>
+								<option value="t">t</option>
+							</select>
+						</div>
+						<div class="form-group col-lg-3 col-md-12 col-xs-12">
+							<label for="valor">Valor</label>
+							<input type="text" class="form-control" name="valor" ng-model="fretes.freteFormulario.valor" required>
+						</div>
+					</div>
+					<div class="row">
+						<div class="form-group col-lg-4 col-md-12 col-xs-12">
+							<label for="cidade">Cidade</label>
+							<ui-select ng-model="fretes.freteFormulario.cidade" data-placeholder="Escolha a Cidade">
+							    <ui-select-match>
+							        <span ng-bind="$select.selected.nome"></span>
+							    </ui-select-match>
+							    <ui-select-choices repeat="cidade in (fretes.cidades | filter: $select.search) track by cidade.codigo_cidade">
+							        <span ng-bind="cidade.nome"></span>
+							    </ui-select-choices>
+							</ui-select>
+						</div>
+						<div class="form-group col-lg-4 col-md-12 col-xs-12">
+							<label for="cliente">Cliente</label>
+							<ui-select ng-model="fretes.freteFormulario.cliente" data-placeholder="Escolha o Cliente">
+							    <ui-select-match>
+							        <span ng-bind="$select.selected.nome"></span>
+							    </ui-select-match>
+							    <ui-select-choices repeat="cliente in (fretes.clientes | filter: $select.search) track by cliente.codigo_cliente">
+							        <span ng-bind="cliente.nome"></span>
+							    </ui-select-choices>
+							</ui-select>
+						</div>
+					</div>
+					<div class="row">
+						<div class="form-group col-lg-3 col-md-12 col-xs-12 pull-right">
+							<button class="btn btn-danger" title="Cancelar" ng-click="fretes.resetForm()">
+								Cancelar
+							</button>
+							<button class="btn btn-primary" title="Enviar" type="submit" ng-disabled="fretes.formCliente.$invalid">
+								Enviar
+							</button>
+						</div>
+					</div>
+				</form>
+			</rd-widget-body>
+		</rd-widget>
+	</div>
+</div>
+<div class="row">
+	<div class="col-lg-12 col-md-6 col-xs-12">
+		<rd-widget>
+			<rd-widget-header icon="fa-truck" title="fretes">
+		    </rd-widget-header>
+			<rd-widget-body>
+				<div class="table-responsive">
+					<table class="table">
+						<thead>
+							<th>#</th>
+							<th>Descrição</th>
+							<th>Peso</th>
+							<th>Valor</th>
+							<th>Cidade</th>
+							<th>Cliente</th>
+							<th>Ações</th>
+						</thead>
+						<tbody>
+							<tr ng-repeat="frete in fretes.lista | startFrom:fretes.paginaAtual*fretes.tamanhoPagina | limitTo:fretes.tamanhoPagina">
+								<td>{{frete.codigo_frete}}</td>
+								<td>{{frete.descricao}}</td>
+								<td>{{frete.peso | peso}} </td>
+								<td>{{frete.valor | currency}}</td>
+								<td>{{frete.Cidade.nome}}</td>
+								<td>{{frete.Cliente.nome}}</td>
+								<td>
+									<button class="btn btn-danger" title="excluir" ng-click="fretes.removerFrete(frete)">
+										<i class="fa fa-trash"></i>
+									</button>
+									<button class="btn btn-primary" title="editar" ng-click="fretes.carregarFrete(frete)">
+										<i class="fa fa-edit"></i>
+									</button>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+				
+			</rd-widget-body>
+			<rd-widget-footer>
+		        <ul class="pagination pagination-sm pull-right">
+		          <li><button class="btn" ng-disabled="fretes.paginaAtual == 0" ng-click="fretes.paginaAtual=fretes.paginaAtual-1">&laquo;</button></li>
+		          <li class="btn">{{fretes.paginaAtual+1}} / {{fretes.qtdPaginas()}}</li>
+		          <li><button class="btn" ng-disabled="fretes.paginaAtual >= fretes.qtdPaginas()-1" ng-click="fretes.paginaAtual=fretes.paginaAtual+1">&raquo;</button></li>
+		        </ul>
+		        <div class="clearfix"></div>
+		     </rd-widget-footer>
+		</rd-widget>
+	</div>
+</div>
