@@ -2,7 +2,7 @@ import express from "express";
 import consign from "consign";
 
 const app = express();
-
+//mudança para o build
 consign({verbose: false})
 	.include("./libs/config.js")
 	.then("db.js")
